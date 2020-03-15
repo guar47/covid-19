@@ -36,6 +36,7 @@ function App() {
     <div id="App">
       <div className="prelude">
         <h1>Социальное дистанцирование</h1>
+        <a href="https://corona-azure.now.sh" rel="noopener noreferrer" target="_blank">English version</a>
         <p>
           Многие люди очень скептически относяться к опасности Короновируса (covid-19).
           Я сделал этот сайт для того чтобы показать как твои действия могут повлиять на тебя,
