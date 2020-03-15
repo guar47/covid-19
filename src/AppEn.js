@@ -35,12 +35,13 @@ function App() {
   return (
     <div id="App">
       <div className="prelude">
-        <h1>Социальное дистанцирование</h1>
+        <h1>Social Distancing</h1>
         <p>
-          Многие люди очень скептически относяться к опасности Короновируса (covid-19).
-          Я сделал этот сайт для того чтобы показать как твои действия могут повлиять на тебя,
-          твою семью и общество вокруг.
-          Все вычисления основаны на последних данных смерности на 14 марта 2020 года.
+          Many people close to me are skeptical that covid-19 is a big deal.
+          I've made this illustration to show how your action will affect you,
+          your household, and the community around you. All equations are based
+          on the latest infection growth and fatality rates of the virus as of
+          March 14, 2020.
         </p>
       </div>
       <hr />
@@ -51,15 +52,15 @@ function App() {
             ref={arr.length - 1 === index ? focusRef : undefined}
           >
             <span>
-              {index === 0 ? "Твой возраст" : `Член семьи ${index}`}:
+              {index === 0 ? "Your age" : `Household Member ${index}`}:
             </span>{" "}
             <AgeSelect defaultValue={index < 2 ? 40 : undefined} />
           </label>
         ))}
         <button type="button" onClick={() => setPersons(persons + 1)}>
-          Добавить члена семьи
+          Add another
         </button>
-        <button type="submit">Далее</button>
+        <button type="submit">Next</button>
       </form>
     </div>
   )
@@ -68,7 +69,7 @@ function App() {
 function AgeSelect(props) {
   return (
     <select name="ages" {...props}>
-      <option value="UNSET">- возраст</option>
+      <option value="UNSET">- set an age</option>
       {Array.from({ length: 100 }).map((_, index) => (
         <option key={index}>{index}</option>
       ))}
@@ -89,10 +90,10 @@ function Infection() {
   return (
     <div id="App">
       <div className="prelude">
-        <h1>Допустим ты заражен</h1>
+        <h1>You're Infected</h1>
         <p>
-          Давай кинем кубик и посмотрим убьет ли вирус тебя  или членов твоей семьи.
-          Скорее всего нет.
+          Let's roll the dice and see if it kills any of your family. It
+          probably won't.
         </p>
       </div>
       <div id="DiceRolls" className="center">
@@ -101,52 +102,54 @@ function Infection() {
         ))}
       </div>
       <p>
-        Как и ожидалось, скорее всего ты не умер. Но речь не о тебе. Давай посмотрим,
-        как много людей убьет твоя семья, если вы не будете социально дистанцироваться от общества.
+        As expected, you probably didn't die. But it's not about you. Let's look
+        at how many people your family is going to kill by not practicing social
+        distancing.
       </p>
       <Link className="big-link" to={`/killers${location.search}`}>
-        Твой счетчик убийств ▸
+        Your Kill Count ▸
       </Link>
 
       <hr />
-      <h2>Больше информации</h2>
+      <h2>More information</h2>
       <p>
-        Если тебе менее 60 лет или если у тебя нет нарушений иммунитета
-        <i> (что правда, для большинства твоих друзей или семьи)</i>, скорее всего тебе
-        пришлось много раз нажимать на кнопку, чтобы выкинуть кубик со смертью.
+        Unless you're over 60, or are immuno-comprimised{" "}
+        <i>(lots of your friends and family are!)</i> you're going to have to
+        click the button a lot before you die.
       </p>
-      <p>В таком случае это же как грипп, верно?</p>
+      <p>So this is just like the flu, right?</p>
       <p>
-        На самом деле нет. Многие ссылаются, что количество смертей от гриппа гораздо выше (
+        Not quite. People have been quoting how many deaths per year there are
+        for the flu (
         <a href="https://www.cdc.gov/flu/about/burden/index.html#:~:text=">
-          12,000 to 61,000 в год в США
+          12,000 to 61,000
         </a>
-        ), в противопоставлении малому кол-ву от Коронавируса (
+        ) to the deaths so far with coronavirus (
         <a href="https://www.cnn.com/interactive/2020/health/coronavirus-maps-and-cases/">
-          ~50 в США
+          ~50
         </a>
-        ).
+        ) in the US.
       </p>
       <p>
-        Но чтобы получить полную картину, необхдимо проанализировать больше цифр.
-        В нашем случае надо взглянуть на:
+        To get the full story you usually have to look at more than static
+        numbers. In this case, we need to look at:
       </p>
       <ul>
-        <li>Уровень смертности</li>
-        <li>Темп роста инфекции</li>
+        <li>Fatality Rate</li>
+        <li>Infection Growth Rate</li>
       </ul>
       <p>
-        Грипп имеет смертность 0.1%
+        The flu has a general fatality rate of 0.1%
         <br />
-        Текущая смертность от Коронавируса (covid-19) 3.4%
+        COVID-19's fatality rate right now is 3.4%
       </p>
       <p>
         <b>
           <a href="https://www.sciencealert.com/covid-19-s-death-rate-is-higher-than-thought-but-it-should-drop">
-            И это в 34 раза больше
+            That's 34x
           </a>
         </b>
-        . Можно увидеть это визуально по красной шкале.
+        . The red bar here is 34 times bigger.
       </p>
 
       <div className="bars">
@@ -158,19 +161,18 @@ function Infection() {
         </div>
       </div>
       <p>
-        Легко увидеть насколько этот вирус страшнее даже без данных смертности.{" "}
-        <b>Грипп не оказывает такую сильную нагрузку на систему здравоохранения{" "}
-        </b>
-        Италии каждый год, а{" "}
+        It's easy to tell this virus is worse even without all the data,{" "}
+        <b>the flu doesn't completely overwhelm the health care system</b> in
+        Italy each year, but{" "}
         <a href="https://www.theatlantic.com/ideas/archive/2020/03/who-gets-hospital-bed/607807/">
-        вирус уже сделал это
+          that's exactly what coronavirus has done
         </a>
         .
       </p>
-      <p>Но в России все еще ни одной смерти, верно? Чего беспокоиться?</p>
+      <p>But still, only ~50 deaths in the US right? What's the big deal?</p>
       <p>
-        Большое беспокойство должна давать статистика смертности в 34 раза
-        превышающая грипп и экспоненциальный рост распространения вируса.
+        The big deal is mixing a fatality rate that's 34x of the flu with
+        exponential growth.
       </p>
     </div>
   )
@@ -236,16 +238,16 @@ function DiceRoll({ age }) {
             : null}
         </span>{" "}
         <span>
-          <b>{age} лет</b>
+          <b>{age} year old</b>
           <br />
-          Смертность: {(rate * 100).toFixed(1)}%
+          Fatality Rate: {(rate * 100).toFixed(1)}%
         </span>
       </div>
       <div>
         <button disabled={state === "dead"} onClick={rollDice}>
-          Кинуть кубик
+          Roll the dice
         </button>{" "}
-        <span>Бросков: {rolls}</span>
+        <span>Rolls: {rolls}</span>
       </div>
     </div>
   )
@@ -273,10 +275,10 @@ function KillCount({ ages }) {
           <span key={index}>💀</span>
         ))}
       </div>
-      <p>Неделя: {weeks}</p>
-      <p>Зараженные тобой люди: {infected}</p>
-      <p>Убитые тобой люди: {killed}</p>
-      <button onClick={nextWeek}>Прожить еще неделю</button>
+      <p>Week: {weeks}</p>
+      <p>People You Infected: {infected}</p>
+      <p>People You Killed: {killed}</p>
+      <button onClick={nextWeek}>Live another week</button>
     </div>
   )
 }
@@ -293,42 +295,46 @@ function Killers() {
   return (
     <div id="App">
       <div className="prelude">
-        <h1>Твой счетчик убийств</h1>
+        <h1>Your Kill Count</h1>
         <p>
-          Социальное дистанцирование предотвратит количество людей которых ты можешь убить
-          (я надеюсь это будет 0). На текущий момент инфицированный COVID-19 человек инфицирует еще двух.
+          Social distancing is about how many people you want to kill (I hope
+          that's zero). Right now, a COVID-19 infected person infects two more.
         </p>
         <p>
-          Ты заразил двух человек, на следующей неделе каждый из них заразил еще двух и так далее.
+          So you infect two people, and next week they infect two people each,
+          and then they infect two more, etc. etc.
         </p>
-        <p>Попробуй понажимать кнопку несколько раз:</p>
+        <p>Go ahead and click the button</p>
       </div>
       <KillCount ages={ages} />
       <p>
-        Так что пожалуйста, оставайтесь дома. И пока ты там, можешь прочитать эту статью{" "}
+        So please, stay home. And while you're there{" "}
         <a href="https://medium.com/@joschabach/flattening-the-curve-is-a-deadly-delusion-eea324fe9727">
-        я думаю она стоит твоего времени (en)
+          I think this article is worth your time.
         </a>
-        . На данный момент, сдерживание вируса, это лучшее что мы можем сделать.
+        . Containment seems to be the best action right now given the numbers.
       </p>
       <hr />
-      <h2>Больше информации</h2>
+      <h2>More information</h2>
       <p>
         <Link to={`/infected${location.search}`}>
-          На предыдущий странице мы взглянули на смертность
+          On the previous page we looked at the fatality rate
         </Link>{" "}
-        от Короновируса COVID-19 и увидели, что статистически,
-        ты и твоя семья скорее всего будут в порядке.
-        Но социальное дистанцирование необходимо не для вас.
+        of COVID-19 and saw that statistically, you and your family will
+        probably be fine, but social distancing isn't about you.
       </p>
       <p>
-        Самое ужасное в этом вирусе, по сравнению с гриппом, то что ты можешь носить его
-        в течении недель, заражая людей, и даже не будешь знать об этом.
-        Нет способа выявить его, пока не будет поздно. Вот почему так важно дистанцирование.
+        What really sucks about this virus vs. the flu is that you can carry it
+        around with you for weeks infecting people before you even know you have
+        it. There is no way to know until it's too late. That's why containment
+        is so important.
       </p>
       <p>
-        На калькуляторе выше ты увидел что логарифмический рост очень быстрый.
-        Коронавирус следует практически идеальной логарифмической кривой.
+        You just saw that logarithmic growth is a powerful thing. The
+        coronavirus is following a nearly perfect logarithmic curve in the
+        US--even with our low levels of testing. While network marketers hope to
+        use it in their favor to gain financial independence, a virus doesn't
+        have to be convinced to keep the downline going.
       </p>
       <a
         style={{ display: "block", border: "solid 1px" }}
@@ -341,16 +347,14 @@ function Killers() {
         />
       </a>
       <p>
-
-        <i>Скорость атаки</i> COVID-19 была приблизительно вычислена
-        Всемирной Организацией Здоровья{" "}
+        The <i>Attack Rate</i> of COVID-19 is estimated by the World Health
+        Organization to be{" "}
         <a href="https://www.worldometers.info/coronavirus/#repro">
-          между 1.4 и 2.5
+          between 1.4 and 2.5
         </a>
-        .
-        Это значит что если ты заболел, ты приблизительно заразишь двух других людей
-        (другие исследования показывают это число около 4). Для сравнения грипп имеет 1.3
-        и все что ниже 1 просто умирает само.
+        . That means if you get it, you're going to infect 2 other people (other
+        studies have it as high as 4!). By comparison, the flu is 1.3 and
+        anything less than 1 will just die off.
       </p>
     </div>
   )
